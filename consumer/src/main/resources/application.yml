@@ -1,0 +1,20 @@
+server:
+  port: 8091 #Tomcat\u7AEF\u53E3
+
+#dubbo:
+#  application:
+#    id: samples-annotation-consumer
+#    name: samples-annotation-consumer
+#  registry:
+##    id: samples-annotation-consumer
+#    address: zookeeper://127:0:0:1:2181
+#  protocol:
+#    port: 20880
+#    name: dubbo
+#  #scan:
+#    # dubbo 服务提供者实现类所在包
+#    #base-packages: com.dubbo
+#  consumer:
+#    # 是否检查服务提供者有效
+#    check: false
+#    timeout: 2000
