@@ -1,6 +1,8 @@
 package com.dubbo.config;
 
 import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ProtocolConfig;
+import org.apache.dubbo.config.ProviderConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,13 +17,19 @@ import org.springframework.context.annotation.Configuration;
 // @PropertySource("classpath:/dubbo-provider.yml")
 public class ProviderConfiguration {
 
-    // @Bean
-    // public ProviderConfig providerConfig() {
-    //     ProviderConfig providerConfig = new ProviderConfig();
-    //     providerConfig.setTimeout(1000);
-    //     return providerConfig;
-    // }
+    /**
+     * 服务提供方配置
+     */
+    @Bean
+    public ProviderConfig providerConfig() {
+        ProviderConfig providerConfig = new ProviderConfig();
+        providerConfig.setTimeout(1000);
+        return providerConfig;
+    }
 
+    /**
+     * 应用配置
+     */
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
@@ -29,9 +37,26 @@ public class ProviderConfiguration {
         return applicationConfig;
     }
 
+    /**
+     * 注册中心配置
+     */
     @Bean
     public RegistryConfig registryConfig() {
         RegistryConfig registryConfig = new RegistryConfig();
-        registryConfig.setAddress("zookeeper://127.0.0.1:2181");return registryConfig;
+        registryConfig.setProtocol("zookeeper");
+        registryConfig.setAddress("localhost");
+        registryConfig.setPort(2181);
+        return registryConfig;
+    }
+
+    /**
+     * 协议配置
+     */
+    @Bean
+    public ProtocolConfig protocolConfig() {
+        ProtocolConfig protocolConfig = new ProtocolConfig();
+        protocolConfig.setName("dubbo");
+        protocolConfig.setPort(20880);
+        return protocolConfig;
     }
 }

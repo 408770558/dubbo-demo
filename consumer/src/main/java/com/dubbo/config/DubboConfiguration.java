@@ -14,6 +14,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DubboConfiguration {
 
+    /**
+     * 应用配置
+     */
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
@@ -21,6 +24,9 @@ public class DubboConfiguration {
         return applicationConfig;
     }
 
+    /**
+     * 服务消费者配置
+     */
     @Bean
     public ConsumerConfig consumerConfig() {
         ConsumerConfig consumerConfig = new ConsumerConfig();
@@ -28,11 +34,15 @@ public class DubboConfiguration {
         return consumerConfig;
     }
 
+    /**
+     * 注册中心配置，注意：这里的配置需要与服务提供方启动的 EmbeddedZooKeeper 的配置信息保持一致
+     */
     @Bean
     public RegistryConfig registryConfig() {
         RegistryConfig registryConfig = new RegistryConfig();
-        registryConfig.setAddress("zookeeper://127.0.0.1:2181");
-        registryConfig.setClient("curator");
+        registryConfig.setProtocol("zookeeper");
+        registryConfig.setAddress("localhost");
+        registryConfig.setPort(2181);
         return registryConfig;
     }
 }
